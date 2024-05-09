@@ -1,0 +1,24 @@
+{
+  "compileOnSave": true,
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "outDir": "dist",
+      "strict": true,
+      "moduleResolution": "node",
+      "baseUrl": ".",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "paths": {
+        "@/*": ["*"],
+        "@controllers/*": ["src/controllers/*"],
+        "@services/*": ["src/services/*"],
+      }
+    },
+    "include": ["./src", "./server"],
+    "exclude": ["node_modules"]
+  }

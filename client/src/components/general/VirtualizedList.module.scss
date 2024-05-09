@@ -1,0 +1,29 @@
+.item {
+  cursor: pointer;
+  margin: 0 1rem 0 1rem;
+  border-radius: 20px;
+}
+
+.container {
+  height: 50rem;
+  overflow: auto;
+}
+
+// CSSTransition css
+.item-transition-enter {
+  opacity: 0;
+}
+
+.item-transition-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.item-transition-exit {
+  opacity: 1;
+}
+
+.item-transition-exit-active {
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
