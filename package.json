@@ -1,0 +1,19 @@
+{
+  "name": "onboarding-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuval-b-a/OnBoardingApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuval-b-a/OnBoardingApp/issues"
+  },
+  "homepage": "https://github.com/yuval-b-a/OnBoardingApp#readme"
+}
