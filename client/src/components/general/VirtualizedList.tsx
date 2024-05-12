@@ -11,12 +11,16 @@ type Props = {
 export function VirtualizedList(props: Props) {  
   const { items, itemHeight } = props;
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
-  const [visibleItems, setVisibleItems] = useState<ListItem[]>([]);
   const [scrollTop, setScrollTop] = useState(0);
+  const [endIndex, setEndIndex] = useState(0);
   
   const container = useRef<HTMLDivElement>(null);
+
+  // Calculating items to render
+  const containerHeight = container.current?.clientHeight || 0;
+  const startIndex = Math.floor(scrollTop / itemHeight);
   
-  const changeBackgroundColor = useCallback((id: number) => {
+  const selectItem = useCallback((id: number) => {
     setSelectedItem(id);
   }, []);
 
@@ -35,23 +39,18 @@ export function VirtualizedList(props: Props) {
 
   useEffect(() => {
     // Calculating items to render
-    const containerHeight = container.current?.clientHeight || 0;
-    const startIndex = Math.floor(scrollTop / itemHeight);
-    const endIndex = Math.min(
+    setEndIndex(Math.min(
       items.length,
       startIndex + Math.ceil(containerHeight / itemHeight) + 1
-    );
-
-    setVisibleItems(items.slice(startIndex, endIndex));
-  
-  }, [items, scrollTop, itemHeight]);
+    ));
+  }, [startIndex, containerHeight, items, itemHeight]);
 
   return (
     <div className={styles.container} ref={container}>
         <div style={{ height: `${items.length * itemHeight}px`, position: 'relative' }}>
         <TransitionGroup component={null}>
         {
-          visibleItems.map((pr: ListItem, index) => (
+          items?.slice(startIndex, endIndex)?.map((pr: ListItem, index) => (
               <CSSTransition
                   key={`transition_${pr.key}`}
                   classNames="item-transition"
@@ -61,7 +60,7 @@ export function VirtualizedList(props: Props) {
                   >
                   <div 
                       key={pr.key} 
-                      onClick={() => changeBackgroundColor(pr.key)}
+                      onClick={() => selectItem(pr.key)}
                       className={styles.item}
                       style={{ 
                               backgroundColor: selectedItem === pr.key ? '#ff000047' : 'transparent', 
