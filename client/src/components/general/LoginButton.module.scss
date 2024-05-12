@@ -1,0 +1,8 @@
+@import '../../style/mixins.scss';
+
+.loginButton {
+    @include button;
+
+    width: 5rem;
+    margin-top: 5rem;
+}
